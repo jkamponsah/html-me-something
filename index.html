@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title> Jonah Amponsah - Sentiment Analysis </title>
-    <script
-            src="https://www.maths.nottingham.ac.uk/plp/pmadw/LaTeXMathML.js" type="text/javascript">
+    <script src="https://www.maths.nottingham.ac.uk/plp/pmadw/LaTeXMathML.js" type="text/javascript">
     </script>
 
     <link href="style.css" rel="stylesheet">
@@ -13,326 +13,279 @@
 
 <body>
 <header>
-    <h1>Sentiment Analysis on Samsung Wireless Charging Pad</h1>
+    <h1><a name="top"></a>Sentiment Analysis on Samsung Wireless Charging Pad</h1>
     <nav>
         <ul>
-            <li>Introduction</li>
-            <li> Sentiment Analysis</li>
-            <li> Objective</li>
-            <li>Data Description</li>
-            <li>Descriptive Analysis</li>
-            <li>Performing Sentiment Analysis</li>
-            <li>Ordinal Logistic Model</li>
-            <li>Conclusion</li>
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#sentAnalysis">Sentimental Analysis</a></li>
+            <li><a href="#objective">Objective</a></li>
+            <li><a href="#dataDes">Data Description</a></li>
+            <li><a href="#desc">Descriptive Analysis</a></li>
+            <li><a href="#sent">Performing Sentiment Analysis</a></li>
+            <li><a href="#ordinal">Ordinal Logistic Model</a></li>
+            <li><a href="#conclusion">Conclusion</a></li>
 
         </ul>
     </nav>
 </header>
 
 <main>
-<!--    <article>-->
-        <section>
-            <!--            <a name="Intro"></a>-->
-            <h2> Introduction </h2>
-            <p>Natural language processing (NLP) is automatic manipulation of natural languages such as speech and text
-                by
-                software.
-                Some of the more recent projects in NLP are sentimental analysis and text mining. Sentimental analysis
-                and
-                text
-                mining are two of the most popular techniques used in tracking opinions and attitudes on the web and
-                using
-                it to
-                determine whether it has positive or negative effect on the public. </p>
 
-            <p>Text data is different from most of the other forms of raw data. It is extremely high dimensional. Most
-                of
-                the text
-                sentences people use in reviews are short and sometimes grammatically incorrect. Most of these sentences
-                are
-                full of
-                slangs and often ambiguous. People use these short sentences with slangs to express their opinion and
-                sentiments.</p>
+    <section>
+        <h2><a name="intro"></a> Introduction </h2>
+        <p>Natural language processing (NLP) is automatic manipulation of natural languages such as speech and text
+            bysoftware. Some of the more recent projects in NLP are sentimental analysis and text mining.
+            Sentimental analysis and text mining are
+            two of the most popular techniques used in tracking opinions and attitudes on the web and using it to
+            determine whether it has positive or negative effect on the public. </p>
 
-            <h2> Sentimental Analysis </h2>
-            <p>Sentimental Analysis (SA), according to Wikipedia, is the use of natural language processing, text
-                analysis,
-                computational linguistics, and biometrics to systematically identify, extract, quantify, and study
-                affective
-                states
-                and subjective information. That is, sentimental analysis can be viewed as the process of detecting
-                whether
-                a piece
-                of writing is positive, negative, or neutral. Some of the questions we can use SA to answer are: </p>
-            <ul>
-                <li> Is the review of a particular product positive or negative</li>
-                <li>Does this customer like our brand?</li>
-                <li>What is the general attitude of this speaker</li>
-            </ul>
+        <p>Text data is different from most of the other forms of raw data. It is extremely high dimensional. Most
+            of the text sentences people use in reviews are short and sometimes grammatically incorrect. Most of
+            these sentences are full of slangs
+            and often ambiguous. People use these short sentences with slangs to express their opinion and
+            sentiments.
+        </p>
+    </section>
+    <section>
+        <h2><a name="sentAnalysis"></a> Sentimental Analysis </h2>
+        <p>Sentimental Analysis (SA), according to Wikipedia, is the use of natural language processing, text
+            analysis, computational linguistics, and biometrics to systematically identify, extract, quantify, and
+            study affective states and subjective
+            information. That is, sentimental analysis can be viewed as the process of detecting whether a piece of
+            writing is positive, negative, or neutral. Some of the questions we can use SA to answer are: </p>
+        <ul>
+            <li> Is the review of a particular product positive or negative</li>
+            <li>Does this customer like our brand?</li>
+            <li>What is the general attitude of this speaker</li>
+        </ul>
 
-            <h3>Calculating Average Sentiment Scores</h3>
-            <ul>
-                <li>Let p<sub>i</sub> be each document or paragraph such that $p_{i}=\left\{
-                    s_{1},s_{2},\cdots,s_{n}\right\} $
-                    where
-                    s<sub>j</sub> are the sentences within each document.
-                </li>
+        <h3>Calculating Average Sentiment Scores</h3>
+        <ul>
+            <li>Let p<sub>i</sub> be each document or paragraph such that $p_{i}=\left\{
+                s_{1},s_{2},\cdots,s_{n}\right\} $ where s
+                <sub>j</sub> are the sentences within each document.
+            </li>
 
-                <li> Each document is broken down into element of sentences: s<sub>ij</sub> =$\left\{
-                    w_{1},w_{2},\cdots,w_{n}\right\} $,
-                    where w<sub>k</sub> are the words within each sentence.
-                </li>
+            <li> Each document is broken down into element of sentences: s<sub>ij</sub> =$\left\{
+                w_{1},w_{2},\cdots,w_{n}\right\} $, where w<sub>k</sub> are the words within each sentence.
+            </li>
 
-                <li> Let w<sub>ijk</sub> represent the words where $i$ is the $ith$ document or paragraph, $j$ is the
-                    $jth$
-                    sentence, and $k$ is the $kth$ word. Example w<sub>234</sub> is read as the fourth word from the
-                    third
-                    sentence
-                    of the second document.
-                </li>
+            <li> Let w<sub>ijk</sub> represent the words where $i$ is the $ith$ document or paragraph, $j$ is the
+                $jth$ sentence, and $k$ is the $kth$ word. Example w<sub>234</sub> is read as the fourth word from
+                the third sentence of the second document.
+            </li>
 
-                <li> The words in each sentence w<sub>ijk</sub> are searched and compared to a dictionary of polarized
-                    words
-                    (syuzhet package and lexicon package).
-                </li>
+            <li> The words in each sentence w<sub>ijk</sub> are searched and compared to a dictionary of polarized
+                words (syuzhet package and lexicon package).
+            </li>
 
-                <li> Let c<sub>ijk</sub> be a cluster of polarized words such that c<sub>ijl</sub> $\subseteq$
-                    w<sub>ij</sub>. The
-                    words in each polarized cluster are tagged as neutral $\left(w_{ijk}^{0}\right),$ negator
-                    $\left(w_{ijk}^{n}\right),$ amplifier $\left(w_{ijk}^{a}\right),$ or de-amplifier
-                    $\left(w_{ijk}^{d}\right)$.
-                </li>
+            <li> Let c<sub>ijk</sub> be a cluster of polarized words such that c<sub>ijl</sub> $\subseteq$ w
+                <sub>ij</sub>. The words in each polarized cluster are tagged as neutral $\left(w_{ijk}^{0}\right),$
+                negator $\left(w_{ijk}^{n}\right),$ amplifier $\left(w_{ijk}^{a}\right),$ or de-amplifier
+                $\left(w_{ijk}^{d}\right)$.
+            </li>
 
-                <li>Each c<sub>ijl</sub> is then weighted based on the weights from the dictionary of polarized words
-                </li>
+            <li>Each c<sub>ijl</sub> is then weighted based on the weights from the dictionary of polarized words
+            </li>
 
-                <li>Each polarity (sentiment) score ($\delta$<sub>ij</sub>) for each sentence is given by
-                    $\delta_{ij}=\frac{c_{ij}^{\prime}}{\sqrt{w_{ijn}}}$,
-                    where $c_{ij}^{\prime}$ is the sum of the weighted $c_{ijl}$, and $w_{ijn}$ is the total word count
-                    in
-                    each
-                    sentence within each document.
-                </li>
+            <li>Each polarity (sentiment) score ($\delta$<sub>ij</sub>) for each sentence is given by
+                $\delta_{ij}=\frac{c_{ij}^{\prime}}{\sqrt{w_{ijn}}}$, where $c_{ij}^{\prime}$ is the sum of the
+                weighted $c_{ijl}$, and $w_{ijn}$ is the total word count
+                in each sentence within each document.
+            </li>
 
-                <li>Average sentiment score of all the sentences within a document is then given by
-                    $\zeta_{ij}=\frac{1}{n}\sum\delta_{ij}$ where $n$ is the number of sentences in each document.
-                </li>
-            </ul>
-        </section>
+            <li>Average sentiment score of all the sentences within a document is then given by
+                $\zeta_{ij}=\frac{1}{n}\sum\delta_{ij}$ where $n$ is the number of sentences in each document.
+            </li>
+        </ul>
+    </section>
 
-        <section>
-            <h2>Objective</h2>
-            <p>The aim of this short project is to look at the reviews of samsung wireless charger from amazon website
-                with
-                product
-                code <em>B01BHEIIR4</em>. These reviews would be classified as either as positive or negative and then
-                build
-                a model
-                using the classified reviews as target variable.</p>
-        </section>
+    <section>
+        <h2><a name="objective"></a>Objective</h2>
+        <p>The aim of this short project is to look at the reviews of samsung wireless charger from amazon website
+            with product code <em>B01BHEIIR4</em>. These reviews would be classified as either as positive or
+            negative and then build a model using
+            the classified reviews as target variable.</p>
+    </section>
 
-        <section>
-            <h2> Data Description</h2>
+    <section>
+        <h2><a name="dataDes"></a>Data Description</h2>
 
-            <p>The data for this project is a text data from amazon website. The data is a collection of the reviews of
-                samsung wireless charging pad. Below is how the charging pad looks like.</p>
+        <p>The data for this project is a text data from amazon website. The data is a collection of the reviews of
+            samsung wireless charging pad. Below is how the charging pad looks like.</p>
+        <figure>
+            <img alt="charger" src="images/charger.png">
+            <figcaption>Samsung Wireless Charger</figcaption>
+        </figure>
+        <p> The text data has 8918 observations or reviews with 3 important variables. These variables are title,
+            comments, and rates(stars). There were more than 7000 different words used in the review. A few examples
+            of the comments made by some of
+            the customers are</p>
+        <figure>
+            <img alt="Customers Reviews" class=scaled src="images/reviews.PNG">
+            <figcaption>Customers Reviews on Samsung Wireless Charger</figcaption>
+        </figure>
+    </section>
+    <section>
+        <h2><a name="desc"></a>Descriptive Analysis </h2>
+
+        <h3> Frequency Terms</h3>
+        <p>First, we look at the top 10 frequent terms used by the customers. We see that the word 'phone' appears
+            to be the most frequent word used by the customers and this is not surprising since the wireless charger
+            is used by the phone. Almost every
+            comment (positive or negative) has 'phone' in the sentences. The next most frequent word is "charging".
+            This "charging" could mean whether the charging system is good or bad depending on the sentences. From
+            the top 10 frequent words, we
+            can see that the wireless charging pad is likely to have more positive reviews than negative reviews.
+        </p>
+
+        <div>
             <figure>
-                <img  src="images/charger.png" alt="charger">
-                <figcaption>Samsung Wireless Charger</figcaption>
+                <img alt="Words Frequency" height="350" src="images/freq_words.PNG">
+                <figcaption>Bar Chart of Top 10 Frequent Terms Used By Customers</figcaption>
             </figure>
-            <p> The text data has 8918 observations or reviews with 3 important variables. These variables are title,
-                comments, and
-                rates(stars). There were more than 7000 different words used in the review.
-                A few examples of the comments made by some of the customers are</p>
+        </div>
+
+        <h3>Word Cloud</h3>
+        <p>The diagram below shows the word clouds of the top 150 frequent words used by the customers. From the
+            diagram, we can see that most of the customers use words like <em>phone, charging, charge, works, and
+                charger.</em>
+        </p>
+
+        <div>
             <figure>
-                <img alt="Customers Reviews" class=scaled src="images/reviews.PNG">
-                <figcaption>Customers Reviews on Samsung Wireless Charger</figcaption>
+                <img alt="Words Clouds" height="350" src="images/word_clouds.PNG">
+                <figcaption>Word Clouds of Top 10 Frequent Terms Used By Customers</figcaption>
             </figure>
-        </section>
-        <section>
-            <h2> Descriptive Analysis </h2>
+        </div>
+        <h3>Word Association</h3>
+        <p>Based on the most frequent words, we decided to look some of the words associated with 'works' and
+            'charging'. With the term "works", it is observed that "works" is mostly associated with "great"
+            followed by "well". The correlation between
+            "works" and "great" is 0.30. Looking at the "charging" term, it is mostly associated with "pad" with
+            correlation of 0.57.
+        </p>
+        <div>
+            <figure>
+                <img alt="Words Association" height="300" src="images/wordAssociation.PNG">
+                <figcaption>Association of Words Used By the customers</figcaption>
+            </figure>
+        </div>
+        <h3>Network of Terms</h3>
+        <p>The network of terms graph below shows how the various words are related. It shows multiple relationship
+            among the words used by the customers. The figure also explains the strength of correlation among the
+            terms or words. From the figure
+            we can see that when a customer uses the word "charging", the next likely word to be used is "phone" or
+            "works".
+        </p>
+        <div>
+            <figure>
+                <img alt="Network of Terms" height="300" src="images/network_terms.PNG">
+                <figcaption>Network of Words Used By the customers</figcaption>
+            </figure>
+        </div>
+        <h3>Positive Reviews and Negative Reviews</h3>
+        <div class="row">
+            <figure>
+                <img alt="Positive" height="350" src="images/positive.PNG" width="600">
+                <figcaption> Positive Terms Used By The Customers</figcaption>
+            </figure>
 
-            <h3> Frequency Terms</h3>
-            <p>First, we look at the top 10 frequent terms used by the customers. We see that the word 'phone' appears
-                to be
-                the
-                most frequent word used by the customers and this is not surprising since the wireless charger is used
-                by
-                the phone.
-                Almost every comment (positive or negative) has 'phone' in the sentences. The next most frequent word is
-                "charging".
-                This "charging" could mean whether the charging system is good or bad depending on the sentences. From
-                the
-                top 10
-                frequent words, we can see that the wireless charging pad is likely to have more positive reviews than
-                negative
-                reviews.</p>
+            <figure>
+                <img alt="Negative" height="350" src="images/negative_terms.PNG" width="600">
+                <figcaption> Negative Terms Used By The Customers</figcaption>
+            </figure>
+        </div>
+    </section>
 
-            <div>
-                <figure>
-                    <img alt="Words Frequency" height="350" src="images/freq_words.PNG">
-                    <figcaption>Bar Chart of Top 10 Frequent Terms Used By Customers</figcaption>
-                </figure>
-            </div>
+    <section>
+        <h2><a name="sent"></a>Performing Sentiment Analysis</h2>
+        <p> Before performing sentiment analysis on the customer ratings, we take a look at the frequency table of
+            the overall customer ratings. From the graph below we can see that more than 5000 customer rated the
+            charger as being excellent. About 110
+            customers gave the device a-one-star rating. From the frequency graph we can see the majority of the
+            customers like the device. </p>
+        <div>
+            <figure>
+                <img alt="Customer ratings" height="250" src="images/ratings.PNG">
+                <figcaption> Distribution Table of Customer Ratings</figcaption>
+            </figure>
+        </div>
 
-            <h3>Word Cloud</h3>
-            <p>The diagram below shows the word clouds of the top 150 frequent words used by the customers. From the
-                diagram, we can
-                see that most of the customers use words like <em>phone, charging, charge, works, and charger.</em>
-            </p>
+        <p> Next, we take a look at the top 5 both negative and positive sentence based on polarities.</p>
 
-            <div>
-                <figure>
-                    <img alt="Words Clouds" height="350" src="images/word_clouds.PNG">
-                    <figcaption>Word Clouds of Top 10 Frequent Terms Used By Customers</figcaption>
-                </figure>
-            </div>
-            <h3>Word Association</h3>
-            <p>Based on the most frequent words, we decided to look some of the words associated with 'works' and
-                'charging'. With
-                the term "works", it is observed that "works" is mostly associated with "great" followed by "well". The
-                correlation
-                between "works" and "great" is 0.30. Looking at the "charging" term, it is mostly associated with "pad"
-                with
-                correlation of 0.57.
-            </p>
-            <div>
-                <figure>
-                    <img alt="Words Association" height="300" src="images/wordAssociation.PNG">
-                    <figcaption>Association of Words Used By the customers</figcaption>
-                </figure>
-            </div>
-            <h3>Network of Terms</h3>
-            <p>The network of terms graph below shows how the various words are related. It shows multiple relationship
-                among the words used by the customers. The figure also explains the strength of correlation among the
-                terms or words. From the figure we can see that when a customer uses the word "charging", the next
-                likely word to
-                be used is "phone" or "works".</p>
-            <div>
-                <figure>
-                    <img alt="Network of Terms" height="300" src="images/network_terms.PNG">
-                    <figcaption>Network of Words Used By the customers</figcaption>
-                </figure>
-            </div>
-            <h3>Positive Reviews and Negative Reviews</h3>
-            <div class="row">
-                <figure>
-                    <img alt="Positive" height="350" src="images/positive.PNG" width="600">
-                    <figcaption> Positive Terms Used By The Customers</figcaption>
-                </figure>
+        <div class="row">
+            <figure>
+                <img alt="Positive Comments" height="250" src="images/topFivePositiveComments.PNG" width="600">
+                <figcaption> Top Five Positive Sentences Used By The Customers</figcaption>
+            </figure>
 
-                <figure>
-                    <img alt="Negative" height="350" src="images/negative_terms.PNG" width="600">
-                    <figcaption> Negative Terms Used By The Customers</figcaption>
-                </figure>
-            </div>
-        </section>
-
-        <section>
-            <h2>Performing Sentiment Analysis</h2>
-            <p> Before performing sentiment analysis on the customer ratings, we take a look at the frequency table of
-                the
-                overall
-                customer ratings. From the graph below we can see that more than 5000 customer rated the charger as
-                being
-                excellent. About 110 customers gave the device a-one-star rating. From the frequency graph we can see
-                the
-                majority
-                of the customers like the device. </p>
-            <div>
-                <figure>
-                    <img alt="Customer ratings" height="250" src="images/ratings.PNG">
-                    <figcaption> Distribution Table of Customer Ratings</figcaption>
-                </figure>
-            </div>
-
-            <p> Next, we take a look at the top 5 both negative and positive sentence based on polarities.</p>
-
-            <div class="row">
-                <figure>
-                    <img alt="Positive Comments" height="250" src="images/topFivePositiveComments.PNG" width="600">
-                    <figcaption> Top Five Positive Sentences Used By The Customers</figcaption>
-                </figure>
-
-                <figure>
-                    <img alt="Negative Comments" height="250" src="images/topFiveNegativeComments.PNG" width="600">
-                    <figcaption> Top Five Negative Sentences Used By The Customers</figcaption>
-                </figure>
-            </div>
-            <h3> Classifying Sentiments </h3>
-            <p> Each average sentiment was classified as either positive, negative, or neutral. Sentiments with average
-                score more
-                than 0 were classified as positive, less than 0 were classified as negative and sentiments with
-                approximately 0 were
-                classified as neutral. In all, there were 6770 reviews that were classified as positive, 1537 negative,
-                and
-                611
-                being neutral. The figure below shows the average sentiment score and their classifications for the
-                first 10
-                customers. The frequency distribution of the classified sentiments shows that majority of the customers
-                gave
-                a
-                five-star.</p>
-            <div class="row">
-                <figure>
-                    <img alt="Average Sentiment Scores" height="300" src="images/averageScore.PNG">
-                    <figcaption> Average Sentiment Scores and Their Classifications</figcaption>
-                    <img alt="Average Sentiment Scores" height="300" src="images/sentimentDistribution.PNG">
-                    <figcaption> Distibution Table of the Sentiment Classifications</figcaption>
-                </figure>
-            </div>
-        </section>
-        <section>
-            <h2>Ordinal Logistic Model</h2>
-            <div>The summary of the ordinal logistic model is shown below. The estimated coefficient of average
-                sentiment
-                score is
-                4.9558 with a very low p-value suggesting the average sentiment score variable is highly significant.
-                <figure>
-                    <img alt="Model Results" height="300" src="images/modelResults.PNG">
-                    <figcaption> Summary of Ordinal Logistic Model on Average Scores</figcaption>
-                </figure>
-            </div>
-            <h3>Odds Ratio Interpretation</h3>
-            <div>
-                <figure>
-                    <img alt="Odds Ratio" height="300" src="images/oddsRatio.PNG">
-                    <figcaption> Odds Ratio of Ordinal Logistic Model on Average Scores</figcaption>
-                </figure>
+            <figure>
+                <img alt="Negative Comments" height="250" src="images/topFiveNegativeComments.PNG" width="600">
+                <figcaption> Top Five Negative Sentences Used By The Customers</figcaption>
+            </figure>
+        </div>
+        <h3> Classifying Sentiments </h3>
+        <p> Each average sentiment was classified as either positive, negative, or neutral. Sentiments with average
+            score more than 0 were classified as positive, less than 0 were classified as negative and sentiments
+            with approximately 0 were classified
+            as neutral. In all, there were 6770 reviews that were classified as positive, 1537 negative, and 611
+            being neutral. The figure below shows the average sentiment score and their classifications for the
+            first 10 customers. The frequency
+            distribution of the classified sentiments shows that majority of the customers gave a five-star.
+        </p>
+        <div class="row">
+            <figure>
+                <img alt="Average Sentiment Scores" height="300" src="images/averageScore.PNG">
+                <figcaption> Average Sentiment Scores and Their Classifications</figcaption>
+                <img alt="Average Sentiment Scores" height="300" src="images/sentimentDistribution.PNG">
+                <figcaption> Distibution Table of the Sentiment Classifications</figcaption>
+            </figure>
+        </div>
+    </section>
+    <section>
+        <h2><a name="ordinal"></a>Ordinal Logistic Model</h2>
+        <div>The summary of the ordinal logistic model is shown below. The estimated coefficient of average
+            sentiment score is 4.9558 with a very low p-value suggesting the average sentiment score variable is
+            highly significant.
+            <figure>
+                <img alt="Model Results" height="300" src="images/modelResults.PNG">
+                <figcaption> Summary of Ordinal Logistic Model on Average Scores</figcaption>
+            </figure>
+        </div>
+        <h3>Odds Ratio Interpretation</h3>
+        <div>
+            <figure>
+                <img alt="Odds Ratio" height="300" src="images/oddsRatio.PNG">
+                <figcaption> Odds Ratio of Ordinal Logistic Model on Average Scores</figcaption>
+            </figure>
 
 
             <ul>
                 <li>The estimated odds of a 1 star rating vs 2 or 3 or 4 or 5 change by 0.236 times for a 4.9558
-                    increase in
-                    average
-                    sentiment scores.
+                    increase in average sentiment scores.
                 </li>
-                <li>Similarly, the estimated odds of a 2 star rating vs 1 or 3 or 4 or 5 change by 0.446 for a 4.9558
-                    increase in
-                    average sentiment scores.
+                <li>Similarly, the estimated odds of a 2 star rating vs 1 or 3 or 4 or 5 change by 0.446 for a
+                    4.9558 increase in average sentiment scores.
                 </li>
                 <li>The same interpretation can be given to the rest of the ratings.</li>
                 <li>We can see that the odds ratio increases with the number of ratings (stars).</li>
             </ul>
-            </div>
+        </div>
 
-        </section>
+    </section>
 
-        <section>
-            <h2>Conclusion</h2>
-            <p>The project seeks to analyse the customers reviews of Samsung wireless charger and to determine if the
-                ratings
-                (stars) correspond to the reviews using sentiment scores. Ordinal logistic model was found to be
-                appropriate
-                for
-                this data and that was to determine the relationship between the two variables. It was found that there
-                is a
-                linear
-                relationship between the stars and their average sentiment scores. The average sentiment scores and the
-                stars are
-                positively correlated. </p>
-        </section>
-<!--    </article>-->
+    <section>
+        <h2><a name="conclusion"></a>Conclusion</h2>
+        <p>The project seeks to analyse the customers reviews of Samsung wireless charger and to determine if the
+            ratings (stars) correspond to the reviews using sentiment scores. Ordinal logistic model was found to be
+            appropriate for this data and that
+            was to determine the relationship between the two variables. It was found that there is a linear
+            relationship between the stars and their average sentiment scores. The average sentiment scores and the
+            stars are positively correlated. </p>
+    </section>
+    <p><a href="#top">Back to top</a></p>
 </main>
 </body>
+
 </html>
