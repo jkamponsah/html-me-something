@@ -2,19 +2,86 @@
 
 <html lang="en">
 <head>
-    <title> Jonah Amponsah - Sentimental Analysis </title>
+    <title> Jonah Amponsah - Sentiment Analysis </title>
+    <script
+            type="text/javascript" src="https://www.maths.nottingham.ac.uk/plp/pmadw/LaTeXMathML.js">
+    </script>
 </head>
 
 <body>
 <h1> Introduction </h1>
+<p>Natural language processing (NLP) is automatic manipulation of natural languages such as speech and text by software.
+    Some of the more recent projects in NLP are sentimental analysis and text mining. Sentimental analysis and text
+    mining are two of the most popular techniques used in tracking opinions and attitudes on the web and using it to
+    determine whether it has positive or negative effect on the public. </p>
 
-<p> This is first paragraph </p>
+<p>Text data is different from most of the other forms of raw data. It is extremely high dimensional. Most of the text
+    sentences people use in reviews are short and sometimes grammatically incorrect. Most of these sentences are full of
+    slangs and often ambiguous. People use these short sentences with slangs to express their opinion and
+    sentiments.</p>
 
-<p> This is second paragraph </p>
+<h2> Sentimental Analysis </h2>
+<p>Sentimental Analysis (SA), according to Wikipedia, is the use of natural language processing, text analysis,
+    computational linguistics, and biometrics to systematically identify, extract, quantify, and study affective states
+    and subjective information. That is, sentimental analysis can be viewed as the process of detecting whether a piece
+    of writing is positive, negative, or neutral. Some of the questions we can use SA to answer are: </p>
+<ul>
+    <li> Is the review of a particular product positive or negative</li>
+    <li>Does this customer like our brand?</li>
+    <li>What is the general attitude of this speaker</li>
+</ul>
 
-<h1> Methodology </h1>
+<h3>Calculating Average Sentiment Scores</h3>
+<ul>
+    <li>Let p<sub>i</sub> be each document or paragraph such that $p_{i}=\left\{ s_{1},s_{2},\cdots,s_{n}\right\} $
+        where
+        s<sub>j</sub> are the sentences within each document.
+    </li>
+
+    <li> Each document is broken down into element of sentences: s<sub>ij</sub> =$\left\{
+        w_{1},w_{2},\cdots,w_{n}\right\} $,
+        where w<sub>k</sub> are the words within each sentence.
+    </li>
+
+    <li> Let w<sub>ijk</sub> represent the words where $i$ is the $ith$ document or paragraph, $j$ is the $jth$
+        sentence, and $k$ is the $kth$ word. Example w<sub>234</sub> is read as the fourth word from the third sentence
+        of the second document.
+    </li>
+
+    <li> The words in each sentence w<sub>ijk</sub> are searched and compared to a dictionary of polarized words
+        (syuzhet package and lexicon package).
+    </li>
+
+    <li> Let c<sub>ijk</sub> be a cluster of polarized words such that c<sub>ijl</sub> $\subseteq$ w<sub>ij</sub>. The
+        words in each polarized cluster are tagged as neutral $\left(w_{ijk}^{0}\right),$ negator
+        $\left(w_{ijk}^{n}\right),$ amplifier $\left(w_{ijk}^{a}\right),$ or de-amplifier $\left(w_{ijk}^{d}\right)$.
+    </li>
+
+    <li>Each c<sub>ijl</sub> is then weighted based on the weights from the dictionary of polarized words</li>
+
+    <li>Each polarity (sentiment) score ($\delta$<sub>ij</sub>) for each sentence is given by
+        $\delta_{ij}=\frac{c_{ij}^{\prime}}{\sqrt{w_{ijn}}}$,
+        where $c_{ij}^{\prime}$ is the sum of the weighted $c_{ijl}$, and $w_{ijn}$ is the total word count in each
+        sentence within each document.
+    </li>
+
+    <li>Average sentiment score of all the sentences within a document is then given by
+        $\zeta_{ij}=\frac{1}{n}\sum\delta_{ij}$ where $n$ is the number of sentences in each document.
+    </li>
+</ul>
+
+
+<h3> Classifying Sentiments </h3>
+<p> Each average sentiment was classified as either positive, negative, or neutral. Sentiments with average score more
+    than 0 were classified as positive, less than 0 were classified as negative and sentiments with approximately 0 were
+    classified as neutral. In all, there were 6770 reviews that were classified as positive, 1537 negative, and 611
+    being neutral.</p>
+
+
 
 <h1> Analysis </h1>
+
+<h2> Data Description</h2>
 
 <h1> Findings </h1>
 
