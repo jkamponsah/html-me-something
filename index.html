@@ -15,9 +15,15 @@
     <h1>Sentiment Analysis on Samsung Wireless Charging Pad</h1>
     <nav>
         <ul>
-            <li>
-                Introduction
-            </li>
+            <li>Introduction</li>
+            <li> Sentiment Analysis</li>
+            <li> Objective</li>
+            <li>Data Description</li>
+            <li>Descriptive Analysis</li>
+            <li>Performing Sentiment Analysis</li>
+            <li>Ordinal Logistic Model</li>
+            <li>Conclusion</li>
+
         </ul>
     </nav>
 </header>
@@ -122,33 +128,31 @@
                 build
                 a model
                 using the classified reviews as target variable.</p>
+        </section>
 
+        <section>
             <h2> Data Description</h2>
 
             <p>The data for this project is a text data from amazon website. The data is a collection of the reviews of
-                samsung
-                wireless charging pad. Below is how the charging pad looks like.
+                samsung wireless charging pad. Below is how the charging pad looks like.
                 <figure>
                     <img alt="Samsung Wireless Charger" src="images/charger.png">
                     <figcaption>Samsung Wireless Charger</figcaption>
                 </figure>
-            </p>
 
+            </p>
             <p> The text data has 8918 observations or reviews with 3 important variables. These variables are title,
                 comments, and
                 rates(stars). There were more than 7000 different words used in the review.
                 A few examples of the comments made by some of the customers are
             </p>
-
             <p>
                 <figure>
                     <img alt="Customers Reviews" class=scaled src="images/reviews.PNG">
                     <figcaption>Customers Reviews on Samsung Wireless Charger</figcaption>
                 </figure>
             </p>
-        </section>
 
-        <section>
             <h2> Descriptive Analysis </h2>
 
             <h3> Frequency Terms</h3>
@@ -228,6 +232,7 @@
                 </figure>
             </div>
         </section>
+
         <section>
             <h2>Performing Sentiment Analysis</h2>
             <p> Before performing sentiment analysis on the customer ratings, we take a look at the frequency table of
@@ -274,15 +279,13 @@
                 <figure>
                     <img alt="Average Sentiment Scores" height="300" src="images/averageScore.PNG">
                     <figcaption> Average Sentiment Scores and Their Classifications</figcaption>
-                </figure>
 
-                <figure>
                     <img alt="Average Sentiment Scores" height="300" src="images/sentimentDistribution.PNG">
                     <figcaption> Distibution Table of the Sentiment Classifications</figcaption>
                 </figure>
+
             </div>
-        </section>
-        <section>
+
             <h2>Ordinal Logistic Model</h2>
             <p>The summary of the ordinal logistic model is shown below. The estimated coefficient of average sentiment
                 score is
@@ -311,8 +314,7 @@
                 <li>The same interpretation can be given to the rest of the ratings.</li>
                 <li>We can see that the odds ratio increases with the number of ratings (stars).</li>
             </ul>
-        </section>
-        <section>
+
             <h2>Conclusion</h2>
             <p>The project seeks to analyse the customers reviews of Samsung wireless charger and to determine if the
                 ratings
@@ -330,4 +332,3 @@
 </main>
 </body>
 </html>
-
