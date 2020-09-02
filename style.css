@@ -51,7 +51,7 @@ figure {
     margin-left: auto;
     margin-right: auto;
     padding: 0.1em;
-    width: 50%;
+    width: 40%;
     height: auto;
     border: thin #c0c0c0 solid;
     display: flex;
@@ -62,7 +62,7 @@ figcaption {
     background-color: #222;
     color: #fff;
     font: italic smaller sans-serif;
-    padding: 3px;
+    /*padding: 3px;*/
     text-align: center;
 }
 img.scaled {
@@ -70,6 +70,11 @@ img.scaled {
 }
 
 .row {
+    display: flex;
+    justify-content: center;
+}
+
+#rows {
     display: flex;
     justify-content: center;
 }
